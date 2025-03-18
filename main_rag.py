@@ -22,7 +22,7 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 
 genai.configure(api_key=GEMINI_API_KEY)  # Configure Gemini API
-model = genai.GenerativeModel('gemini-2.0-pro-exp-02-05')  # Use gemini-pro model
+model = genai.GenerativeModel('gemini-1.5-pro')  # Use gemini-pro model
 
 # Checking for the Gemini models available to me
 # for model in genai.list_models():
@@ -250,21 +250,3 @@ class RAGSystem:
     def split_text_into_sentences(self, text):
         sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text)
         return sentences
-
-# Initialize RAG system
-rag = RAGSystem(
-    pc_client=pc,
-    index_name="studio",
-    gemini_api_key=GEMINI_API_KEY,
-    dimension=1024,
-    embedding_model_name="BAAI/bge-large-en-v1.5"
-)
-
-docx_file_path = r"v1chap2.docx"
-
-if os.path.exists(docx_file_path):
-    rag.index_document_by_sentences(docx_file_path, chunk_size= 3, chunk_overlap= 1, source="v1chap2-doc")
-
-query = ""
-result = rag.query(query)
-

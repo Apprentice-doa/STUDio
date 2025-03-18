@@ -1,5 +1,7 @@
 import streamlit as st
 import yaml
+import sys
+sys.path.append('/Users/Oracle/Documents/GitHub/STUDio')
 from yaml.loader import SafeLoader
 import streamlit_authenticator as stauth
 from controller import handle_user_query
@@ -64,17 +66,18 @@ if st.session_state.get("authentication_status"):
                 "files": user_input.files,
             })
             query = user_input.text
-            if query:
-                assistant_response = handle_user_query(query)
+            with st.spinner("STUDio is working..."):
+                if query:
+                    assistant_response = handle_user_query(query)
             # Display assistant response
-            with st.chat_message("assistant"):
-                st.markdown(assistant_response)
+                with st.chat_message("assistant"):
+                    st.markdown(assistant_response)
 
             # Add assistant response to chat history
-            st.session_state['messages'].append({
-                "role": "assistant",
-                "content": assistant_response,
-            })
+                st.session_state['messages'].append({
+                    "role": "assistant",
+                    "content": assistant_response,
+                })
         with st.sidebar:
             if authenticator.logout('Logout', 'main'):
                 st.session_state.clear()
