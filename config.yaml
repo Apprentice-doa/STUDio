@@ -1,0 +1,10 @@
+credentials:
+  usernames:
+    oracle:
+      email: oracle9@gmail.com
+      name: oracle
+      password: $2b$12$bf5aiAtmyBQbd9OAyqpM5eauak4NBzDJmuPeVG7N0FJC6qUORKMrq
+cookie:
+  expiry_days: 30
+  key: 71f464977314272e300e1d96c517898c60aa25ccb4b4d67f
+  name: mlberry
